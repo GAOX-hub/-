@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <title>遗传密码子交互实验台</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
       background: radial-gradient(circle at top, #182b4d 0, #050814 45%, #02030a 100%);
       color: #e5f0ff;
@@ -219,136 +216,220 @@
       font-size: 90%;
     }
 
-    /* 翻译示意图面板 */
-    .translation-panel {
-      margin-top: 20px;
+    @media (max-width: 720px) {
+      .result-grid { grid-template-columns: minmax(0, 1fr); }
     }
-    .translation-diagram {
+
+    /* ==== 新：动画版 tRNA + mRNA 示意图 ==== */
+    .animation-panel { margin-top: 20px; }
+    .cartoon-wrap {
       margin-top: 10px;
-      padding: 14px 16px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(96, 165, 250, 0.6);
-      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.55), rgba(15, 23, 42, 0.95));
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
-      font-size: 13px;
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(96, 165, 250, 0.7);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.7), rgba(15, 23, 42, 0.96));
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+      position: relative;
+      overflow: hidden;
     }
-    .translation-diagram .row {
+
+    /* “转运RNA小人”整体泡泡 */
+    .trna-bubble {
+      position: absolute;
+      right: 6%;
+      bottom: 10px;
+      width: 210px;
+      height: 150px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 20%, rgba(248, 250, 252, 0.9), rgba(191, 219, 254, 0.95));
+      box-shadow:
+        0 0 25px rgba(191, 219, 254, 0.8),
+        0 0 60px rgba(59, 130, 246, 0.7);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      justify-content: center;
+      flex-direction: column;
+      color: #0f172a;
+      font-size: 13px;
+      transform-origin: center bottom;
     }
-    .ribosome {
+
+    .trna-face-eyes {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 3px;
+    }
+    .trna-eye {
+      width: 8px;
+      height: 18px;
+      border-radius: 999px;
+      background: #0f172a;
+    }
+    .trna-mouth {
+      width: 26px;
+      height: 14px;
+      border-radius: 0 0 26px 26px;
+      background: #fb7185;
+      margin-bottom: 6px;
+    }
+    .trna-text {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* tRNA 三叶草简化：用线条和三个“支脚”表示反密码子 */
+    .trna-clover {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
-    .subunit {
-      width: 120px;
-      height: 38px;
+    .clover-stick {
+      width: 4px;
+      height: 48px;
       border-radius: 999px;
+      background: #0ea5e9;
+      position: relative;
+    }
+    .clover-loop-top {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 4px solid #0ea5e9;
+      background: rgba(191, 219, 254, 0.6);
+    }
+    .clover-loop-left,
+    .clover-loop-right {
+      position: absolute;
+      top: 10px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 4px solid #0ea5e9;
+      background: rgba(191, 219, 254, 0.6);
+    }
+    .clover-loop-left { right: 110%; }
+    .clover-loop-right { left: 110%; }
+    .clover-loop-bottom {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 4px solid #0ea5e9;
+      background: rgba(191, 219, 254, 0.6);
+    }
+
+    .anticodon-legs {
+      display: flex;
+      gap: 4px;
+      margin-top: 40px;
+    }
+    .anticodon-leg {
+      width: 12px;
+      height: 32px;
+      border-radius: 6px 6px 2px 2px;
+      background: #f97373;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 11px;
+      color: #0f172a;
+      padding-bottom: 2px;
+    }
+
+    .anticodon-label {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #1f2937;
+    }
+
+    /* 氨基酸小球 */
+    .aa-bubble {
+      position: absolute;
+      left: 8%;
+      top: 20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #fefce8, #facc15);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(191, 219, 254, 0.7);
-      background: radial-gradient(circle at top, rgba(191, 219, 254, 0.7), rgba(15, 23, 42, 0.9));
+      flex-direction: column;
       font-size: 13px;
+      box-shadow:
+        0 0 25px rgba(250, 204, 21, 0.9),
+        0 0 50px rgba(52, 211, 153, 0.7);
+      color: #111827;
+      text-align: center;
     }
-    .subunit.small {
-      width: 90px;
-      height: 30px;
-      opacity: 0.9;
+    .aa-bubble span {
+      display: block;
+      margin-top: 4px;
     }
 
-    .rna-track {
-      flex: 1;
-      min-width: 260px;
+    /* mRNA 链条 */
+    .mrna-bar-wrap {
+      position: relative;
+      margin-top: 140px;
+      padding: 10px 12px 4px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
     }
-    .rna-label {
+    .mrna-label {
       font-size: 12px;
       color: #bfdbfe;
       margin-bottom: 4px;
-      display: inline-block;
     }
-    .rna-bases {
+    .mrna-bar {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      align-items: flex-end;
+      gap: 4px;
     }
-    .rna-codon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 6px;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      min-width: 46px;
-      min-height: 32px;
-      font-size: 14px;
+    .mrna-base {
+      width: 12px;
+      height: 28px;
+      border-radius: 4px 4px 0 0;
+      background: rgba(51, 65, 85, 0.8);
+      position: relative;
     }
-    .rna-codon.other {
+    .mrna-base span {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #bfdbfe;
+    }
+    .mrna-base.active {
+      width: 16px;
+      height: 36px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+    }
+    .mrna-dots {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.6);
       opacity: 0.6;
     }
-    .rna-codon.active {
-      border-color: rgba(45, 212, 191, 0.9);
-      box-shadow: 0 0 10px rgba(45, 212, 191, 0.7);
-      background: radial-gradient(circle at top, rgba(34, 197, 235, 0.6), rgba(15, 23, 42, 0.95));
-      letter-spacing: 3px;
-    }
-    .rna-codon.active span {
-      display: inline-block;
-      width: 12px;
-      text-align: center;
-    }
 
-    .trna-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+    /* 弹跳动画 */
+    @keyframes pop {
+      0%   { transform: translateY(10px) scale(0.9); opacity: 0.6; }
+      60%  { transform: translateY(0) scale(1.03); opacity: 1;   }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
     }
-    .trna-shape {
-      min-width: 130px;
-      padding: 8px 10px;
-      border-radius: 16px;
-      border: 1px solid rgba(251, 191, 36, 0.8);
-      background: radial-gradient(circle at top, rgba(250, 204, 21, 0.5), rgba(15, 23, 42, 0.96));
-      text-align: center;
-      font-size: 12px;
-    }
-    .trna-shape .small {
-      font-size: 11px;
-      color: #fef3c7;
-    }
-    .trna-shape .code {
-      display: inline-block;
-      margin-top: 4px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.7);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 12px;
-    }
-    .aa-bubble {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(52, 211, 153, 0.8);
-      background: rgba(22, 101, 52, 0.85);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-    #diagram-aa-name {
-      font-weight: 600;
-      margin-left: 4px;
-    }
-
-    @media (max-width: 720px) {
-      .result-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .pop {
+      animation: pop 0.45s ease-out;
     }
   </style>
 </head>
@@ -359,7 +440,7 @@
     </header>
 
     <div class="layout">
-      <!-- 左侧：拼装互动 -->
+      <!-- 左：拼装 -->
       <section class="panel">
         <div class="panel-inner">
           <h2>① 密码子拼装实验</h2>
@@ -388,12 +469,12 @@
         </div>
       </section>
 
-      <!-- 右侧：搜索工具 -->
+      <!-- 右：检索 -->
       <section class="panel">
         <div class="panel-inner">
           <h2>② 密码子检索工具</h2>
           <div class="hint">
-            直接输入任意三联体密码子进行查询，可用于验证作业或快速查看简并性。
+            输入任意三联体密码子进行查询，可用于验证作业或快速查看简并性。
           </div>
 
           <div class="search-row">
@@ -410,7 +491,7 @@
       </section>
     </div>
 
-    <!-- 共享结果展示区域 -->
+    <!-- 信息结果 -->
     <section id="result-card" class="result-card" style="display:none;">
       <div class="result-header" id="result-source">RESULT</div>
       <div class="result-grid" id="result-grid"></div>
@@ -419,44 +500,55 @@
       </div>
     </section>
 
-    <!-- 翻译过程示意图，与当前密码子联动 -->
-    <section class="panel translation-panel">
+    <!-- 动画版 tRNA + mRNA -->
+    <section class="panel animation-panel">
       <div class="panel-inner">
-        <h2>③ 翻译过程示意图</h2>
+        <h2>③ 动画：mRNA 密码子 · tRNA 配对 · 氨基酸</h2>
         <div class="hint">
-          当前选择 / 查询的密码子将显示在 mRNA 链上，并联动 tRNA 反密码子及对应氨基酸，模拟核糖体翻译终止复合体的结构示意。
+          选择 / 查询不同密码子时，mRNA 链上的碱基颜色发生变化，同时出现对应的 tRNA 反密码子和携带的氨基酸小球。
         </div>
 
-        <div class="translation-diagram">
-          <div class="row">
-            <div class="ribosome">
-              <div class="subunit large">大亚基</div>
-              <div class="subunit small">小亚基</div>
-            </div>
+        <div class="cartoon-wrap">
+          <!-- 氨基酸小球 -->
+          <div class="aa-bubble" id="aa-bubble">
+            氨基酸
+            <span id="aa-text">—</span>
+          </div>
 
-            <div class="rna-track">
-              <div class="rna-label">mRNA 5′ → 3′</div>
-              <div class="rna-bases">
-                <div class="rna-codon other">…</div>
-                <div class="rna-codon active">
-                  <span id="rna-pos-0">_</span>
-                  <span id="rna-pos-1">_</span>
-                  <span id="rna-pos-2">_</span>
-                </div>
-                <div class="rna-codon other">…</div>
+          <!-- 转运 RNA 小人 -->
+          <div class="trna-bubble" id="trna-bubble">
+            <div class="trna-face-eyes">
+              <div class="trna-eye"></div>
+              <div class="trna-eye"></div>
+            </div>
+            <div class="trna-mouth"></div>
+            <div class="trna-text">转运 RNA</div>
+
+            <div class="trna-clover">
+              <div class="clover-stick">
+                <div class="clover-loop-top"></div>
+                <div class="clover-loop-left"></div>
+                <div class="clover-loop-right"></div>
+                <div class="clover-loop-bottom"></div>
               </div>
+              <div class="anticodon-legs" id="anticodon-legs">
+                <div class="anticodon-leg" id="leg-0">_</div>
+                <div class="anticodon-leg" id="leg-1">_</div>
+                <div class="anticodon-leg" id="leg-2">_</div>
+              </div>
+              <div class="anticodon-label">反密码子 3′→5′</div>
             </div>
           </div>
 
-          <div class="trna-area">
-            <div class="trna-shape">
-              tRNA<br />
-              <span class="small">反密码子 3′→5′</span><br />
-              <span class="code" id="diagram-anticodon">---</span>
-            </div>
-            <div class="aa-bubble">
-              氨基酸：
-              <span id="diagram-aa-name">—</span>
+          <!-- mRNA 链条 -->
+          <div class="mrna-bar-wrap">
+            <div class="mrna-label">mRNA 5′ → 3′</div>
+            <div class="mrna-bar">
+              <div class="mrna-dots"></div>
+              <div class="mrna-base active" id="mrna-base-0"><span id="mrna-letter-0">_</span></div>
+              <div class="mrna-base active" id="mrna-base-1"><span id="mrna-letter-1">_</span></div>
+              <div class="mrna-base active" id="mrna-base-2"><span id="mrna-letter-2">_</span></div>
+              <div class="mrna-dots"></div>
             </div>
           </div>
         </div>
@@ -465,125 +557,113 @@
   </div>
 
   <script>
-    // === 1. 标准遗传密码表（RNA 形式） ===
+    // === 遗传密码表 ===
     const CODON_TABLE = {
-      // Phe 苯丙氨酸
       "UUU": { aa: "Phe", name: "苯丙氨酸" },
       "UUC": { aa: "Phe", name: "苯丙氨酸" },
-
-      // Leu 亮氨酸
       "UUA": { aa: "Leu", name: "亮氨酸" },
       "UUG": { aa: "Leu", name: "亮氨酸" },
       "CUU": { aa: "Leu", name: "亮氨酸" },
       "CUC": { aa: "Leu", name: "亮氨酸" },
       "CUA": { aa: "Leu", name: "亮氨酸" },
       "CUG": { aa: "Leu", name: "亮氨酸" },
-
-      // Ile 异亮氨酸
       "AUU": { aa: "Ile", name: "异亮氨酸" },
       "AUC": { aa: "Ile", name: "异亮氨酸" },
       "AUA": { aa: "Ile", name: "异亮氨酸" },
-
-      // Met 甲硫氨酸
       "AUG": { aa: "Met", name: "甲硫氨酸", note: "常见起始密码子" },
-
-      // Val 缬氨酸
       "GUU": { aa: "Val", name: "缬氨酸" },
       "GUC": { aa: "Val", name: "缬氨酸" },
       "GUA": { aa: "Val", name: "缬氨酸" },
       "GUG": { aa: "Val", name: "缬氨酸" },
-
-      // Ser 丝氨酸
       "UCU": { aa: "Ser", name: "丝氨酸" },
       "UCC": { aa: "Ser", name: "丝氨酸" },
       "UCA": { aa: "Ser", name: "丝氨酸" },
       "UCG": { aa: "Ser", name: "丝氨酸" },
       "AGU": { aa: "Ser", name: "丝氨酸" },
       "AGC": { aa: "Ser", name: "丝氨酸" },
-
-      // Pro 脯氨酸
       "CCU": { aa: "Pro", name: "脯氨酸" },
       "CCC": { aa: "Pro", name: "脯氨酸" },
       "CCA": { aa: "Pro", name: "脯氨酸" },
       "CCG": { aa: "Pro", name: "脯氨酸" },
-
-      // Thr 苏氨酸
       "ACU": { aa: "Thr", name: "苏氨酸" },
       "ACC": { aa: "Thr", name: "苏氨酸" },
       "ACA": { aa: "Thr", name: "苏氨酸" },
       "ACG": { aa: "Thr", name: "苏氨酸" },
-
-      // Ala 丙氨酸
       "GCU": { aa: "Ala", name: "丙氨酸" },
       "GCC": { aa: "Ala", name: "丙氨酸" },
       "GCA": { aa: "Ala", name: "丙氨酸" },
       "GCG": { aa: "Ala", name: "丙氨酸" },
-
-      // Tyr 酪氨酸
       "UAU": { aa: "Tyr", name: "酪氨酸" },
       "UAC": { aa: "Tyr", name: "酪氨酸" },
-
-      // Stop 终止密码子
       "UAA": { aa: "Stop", name: "终止密码子" },
       "UAG": { aa: "Stop", name: "终止密码子" },
       "UGA": { aa: "Stop", name: "终止密码子" },
-
-      // Cys 半胱氨酸
       "UGU": { aa: "Cys", name: "半胱氨酸" },
       "UGC": { aa: "Cys", name: "半胱氨酸" },
-
-      // Trp 色氨酸
       "UGG": { aa: "Trp", name: "色氨酸" },
-
-      // His 组氨酸
       "CAU": { aa: "His", name: "组氨酸" },
       "CAC": { aa: "His", name: "组氨酸" },
-
-      // Gln 谷氨酰胺
       "CAA": { aa: "Gln", name: "谷氨酰胺" },
       "CAG": { aa: "Gln", name: "谷氨酰胺" },
-
-      // Asn 天冬酰胺
       "AAU": { aa: "Asn", name: "天冬酰胺" },
       "AAC": { aa: "Asn", name: "天冬酰胺" },
-
-      // Lys 赖氨酸
       "AAA": { aa: "Lys", name: "赖氨酸" },
       "AAG": { aa: "Lys", name: "赖氨酸" },
-
-      // Asp 天冬氨酸
       "GAU": { aa: "Asp", name: "天冬氨酸" },
       "GAC": { aa: "Asp", name: "天冬氨酸" },
-
-      // Glu 谷氨酸
       "GAA": { aa: "Glu", name: "谷氨酸" },
       "GAG": { aa: "Glu", name: "谷氨酸" },
-
-      // Arg 精氨酸
       "CGU": { aa: "Arg", name: "精氨酸" },
       "CGC": { aa: "Arg", name: "精氨酸" },
       "CGA": { aa: "Arg", name: "精氨酸" },
       "CGG": { aa: "Arg", name: "精氨酸" },
       "AGA": { aa: "Arg", name: "精氨酸" },
       "AGG": { aa: "Arg", name: "精氨酸" },
-
-      // Gly 甘氨酸
       "GGU": { aa: "Gly", name: "甘氨酸" },
       "GGC": { aa: "Gly", name: "甘氨酸" },
       "GGA": { aa: "Gly", name: "甘氨酸" },
       "GGG": { aa: "Gly", name: "甘氨酸" }
     };
 
+    // 碱基颜色
+    const BASE_COLORS = {
+      A: "#f97373", // 红
+      U: "#60a5fa", // 蓝
+      G: "#34d399", // 绿
+      C: "#facc15"  // 黄
+    };
+
+    // 氨基酸颜色（大致按类别）
+    const AA_COLORS = {
+      Phe: "#f97316",
+      Leu: "#22c55e",
+      Ile: "#22c55e",
+      Met: "#22c55e",
+      Val: "#22c55e",
+      Ser: "#0ea5e9",
+      Pro: "#6366f1",
+      Thr: "#0ea5e9",
+      Ala: "#4ade80",
+      Tyr: "#facc15",
+      Cys: "#a3e635",
+      Trp: "#6366f1",
+      His: "#a855f7",
+      Gln: "#06b6d4",
+      Asn: "#06b6d4",
+      Lys: "#3b82f6",
+      Asp: "#f97373",
+      Glu: "#fb7185",
+      Arg: "#8b5cf6",
+      Gly: "#22d3ee",
+      Stop: "#94a3b8"
+    };
+
     function normalizeCodon(raw) {
       if (!raw) return { ok: false, error: "请输入 3 个碱基。" };
       let s = raw.trim().toUpperCase();
-      if (s.length !== 3) {
-        return { ok: false, error: "密码子长度必须为 3。" };
-      }
+      if (s.length !== 3) return { ok: false, error: "密码子长度必须为 3。" };
       s = s.replace(/T/g, "U");
-      if (!/^[AUCG]{3}$/.test(s)) {
-        return { ok: false, error: "只允许 A / U / C / G（或含 T 的 DNA 密码子）。" };
-      }
+      if (!/^[AUCG]{3}$/.test(s)) return { ok: false, error: "只允许 A / U / C / G（或含 T 的 DNA 密码子）。" };
       return { ok: true, codon: s };
     }
 
@@ -623,12 +703,25 @@
     const btnBackspace = document.getElementById("btn-backspace");
     const btnClear = document.getElementById("btn-clear");
 
-    // diagram DOM
-    const rnaPos0 = document.getElementById("rna-pos-0");
-    const rnaPos1 = document.getElementById("rna-pos-1");
-    const rnaPos2 = document.getElementById("rna-pos-2");
-    const diagramAnticodon = document.getElementById("diagram-anticodon");
-    const diagramAaName = document.getElementById("diagram-aa-name");
+    // 动画 DOM
+    const mrnaBases = [
+      document.getElementById("mrna-base-0"),
+      document.getElementById("mrna-base-1"),
+      document.getElementById("mrna-base-2")
+    ];
+    const mrnaLetters = [
+      document.getElementById("mrna-letter-0"),
+      document.getElementById("mrna-letter-1"),
+      document.getElementById("mrna-letter-2")
+    ];
+    const legElems = [
+      document.getElementById("leg-0"),
+      document.getElementById("leg-1"),
+      document.getElementById("leg-2")
+    ];
+    const aaBubble = document.getElementById("aa-bubble");
+    const aaText = document.getElementById("aa-text");
+    const trnaBubble = document.getElementById("trna-bubble");
 
     let currentCodon = [];
 
@@ -636,17 +729,45 @@
       for (let i = 0; i < 3; i++) {
         slots[i].textContent = currentCodon[i] || "_";
       }
-      if (currentCodon.length === 3) {
-        rnaPos0.textContent = currentCodon[0];
-        rnaPos1.textContent = currentCodon[1];
-        rnaPos2.textContent = currentCodon[2];
-      } else {
-        rnaPos0.textContent = "_";
-        rnaPos1.textContent = "_";
-        rnaPos2.textContent = "_";
-        diagramAnticodon.textContent = "---";
-        diagramAaName.textContent = "—";
+      if (currentCodon.length !== 3) {
+        mrnaLetters.forEach(el => el.textContent = "_");
+        mrnaBases.forEach(el => el.style.backgroundColor = "rgba(51,65,85,0.8)");
+        legElems.forEach(el => el.textContent = "_");
+        aaText.textContent = "—";
       }
+    }
+
+    function triggerPop() {
+      [trnaBubble, aaBubble].forEach(el => {
+        el.classList.remove("pop");
+        void el.offsetWidth; // 重新触发动画
+        el.classList.add("pop");
+      });
+    }
+
+    function updateCartoon(codon, info, anticodon) {
+      const bases = codon.split("");
+      bases.forEach((b, i) => {
+        mrnaLetters[i].textContent = b;
+        mrnaBases[i].style.backgroundColor = BASE_COLORS[b] || "#64748b";
+      });
+
+      const antiArr = anticodon.split("");
+      antiArr.forEach((b, i) => {
+        legElems[i].textContent = b || "_";
+        legElems[i].style.backgroundColor = BASE_COLORS[b] || "#e5e7eb";
+      });
+
+      if (info.aa === "Stop") {
+        aaText.textContent = "终止信号";
+      } else {
+        aaText.textContent = info.name + " (" + info.aa + ")";
+      }
+      const color = AA_COLORS[info.aa] || "#22c55e";
+      aaBubble.style.background = `radial-gradient(circle at 30% 20%, #fefce8, ${color})`;
+      aaBubble.style.boxShadow = `0 0 25px ${color}, 0 0 50px rgba(52,211,153,0.7)`;
+
+      triggerPop();
     }
 
     function showCodonInfo(codon, source) {
@@ -663,11 +784,11 @@
       const anticodon = codon.split("").map(complementRNA).reverse().join("");
       const dnaTemplate = rnaToDnaTemplate(codon);
 
-      let degeneracyText;
+      let degText;
       if (aaCode === "Stop") {
-        degeneracyText = `共有 <strong>${degeneracy}</strong> 个终止密码子。`;
+        degText = `共有 <strong>${degeneracy}</strong> 个终止密码子。`;
       } else {
-        degeneracyText = `这种氨基酸共有 <strong>${degeneracy}</strong> 个不同密码子编码，本密码子是其中之一。`;
+        degText = `这种氨基酸共有 <strong>${degeneracy}</strong> 个不同密码子编码，本密码子是其中之一。`;
       }
 
       const noteText = info.note ? `<div><span class="label">备注：</span>${info.note}</div>` : "";
@@ -681,7 +802,7 @@
           <div><span class="label">mRNA 密码子 (5′→3′)：</span><code>${codon}</code></div>
           <div><span class="label">氨基酸：</span>${info.name} (${aaCode})</div>
           ${noteText}
-          <div style="margin-top:6px;"><span class="label">简并性：</span>${degeneracyText}</div>
+          <div style="margin-top:6px;"><span class="label">简并性：</span>${degText}</div>
         </div>
         <div>
           <div><span class="label">同义密码子：</span>${synonymous.join(", ")}</div>
@@ -691,17 +812,10 @@
       `;
       resultCard.style.display = "block";
 
-      // 更新翻译示意图
-      rnaPos0.textContent = codon[0];
-      rnaPos1.textContent = codon[1];
-      rnaPos2.textContent = codon[2];
-      diagramAnticodon.textContent = anticodon;
-      diagramAaName.textContent = aaCode === "Stop"
-        ? "终止信号"
-        : `${info.name} (${aaCode})`;
+      updateCartoon(codon, info, anticodon);
     }
 
-    // 拼装互动事件
+    // 拼装按钮
     document.querySelectorAll(".base-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         if (currentCodon.length >= 3) return;
@@ -729,7 +843,7 @@
       resultCard.style.display = "none";
     });
 
-    // 搜索工具事件
+    // 查询
     function handleSearch() {
       const norm = normalizeCodon(codonInput.value);
       if (!norm.ok) {
@@ -744,12 +858,9 @@
 
     searchBtn.addEventListener("click", handleSearch);
     codonInput.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        handleSearch();
-      }
+      if (e.key === "Enter") handleSearch();
     });
 
-    // 初始化
     updateSlots();
   </script>
 </body>
