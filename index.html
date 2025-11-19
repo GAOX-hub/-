@@ -220,38 +220,68 @@
       .result-grid { grid-template-columns: minmax(0, 1fr); }
     }
 
-    /* ==== 新：动画版 tRNA + mRNA 示意图 ==== */
+    /* ==== 动画版 tRNA + mRNA ==== */
     .animation-panel { margin-top: 20px; }
     .cartoon-wrap {
       margin-top: 10px;
-      padding: 18px 18px 16px;
+      padding: 18px 18px 60px;
       border-radius: 18px;
       border: 1px solid rgba(96, 165, 250, 0.7);
       background: radial-gradient(circle at top, rgba(30, 64, 175, 0.7), rgba(15, 23, 42, 0.96));
       box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
+      min-height: 260px;
     }
 
-    /* “转运RNA小人”整体泡泡 */
+    /* 转运RNA整体泡泡 */
     .trna-bubble {
       position: absolute;
-      right: 6%;
-      bottom: 10px;
-      width: 210px;
-      height: 150px;
+      right: 8%;
+      top: 60px;
+      width: 220px;
+      height: 160px;
       border-radius: 999px;
-      background: radial-gradient(circle at 20% 20%, rgba(248, 250, 252, 0.9), rgba(191, 219, 254, 0.95));
+      background: radial-gradient(circle at 20% 20%, rgba(248, 250, 252, 0.96), rgba(191, 219, 254, 0.96));
       box-shadow:
         0 0 25px rgba(191, 219, 254, 0.8),
         0 0 60px rgba(59, 130, 246, 0.7);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       flex-direction: column;
+      padding-top: 46px;
       color: #0f172a;
       font-size: 13px;
       transform-origin: center bottom;
+      overflow: visible;
+    }
+
+    /* 氨基酸球：在 tRNA 泡泡上方 */
+    .aa-bubble {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #fefce8, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 13px;
+      box-shadow:
+        0 0 25px rgba(34, 197, 94, 0.9),
+        0 0 50px rgba(52, 211, 153, 0.7);
+      color: #111827;
+      text-align: center;
+      pointer-events: none;
+    }
+    .aa-bubble span {
+      display: block;
+      margin-top: 4px;
     }
 
     .trna-face-eyes {
@@ -277,7 +307,6 @@
       margin-bottom: 4px;
     }
 
-    /* tRNA 三叶草简化：用线条和三个“支脚”表示反密码子 */
     .trna-clover {
       display: flex;
       flex-direction: column;
@@ -286,18 +315,18 @@
     }
     .clover-stick {
       width: 4px;
-      height: 48px;
+      height: 50px;
       border-radius: 999px;
       background: #0ea5e9;
       position: relative;
     }
     .clover-loop-top {
       position: absolute;
-      top: -16px;
+      top: -18px;
       left: 50%;
       transform: translateX(-50%);
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       border: 4px solid #0ea5e9;
       background: rgba(191, 219, 254, 0.6);
@@ -305,7 +334,7 @@
     .clover-loop-left,
     .clover-loop-right {
       position: absolute;
-      top: 10px;
+      top: 8px;
       width: 22px;
       height: 22px;
       border-radius: 999px;
@@ -319,8 +348,8 @@
       bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 999px;
       border: 4px solid #0ea5e9;
       background: rgba(191, 219, 254, 0.6);
@@ -329,57 +358,35 @@
     .anticodon-legs {
       display: flex;
       gap: 4px;
-      margin-top: 40px;
+      margin-top: 46px;
     }
     .anticodon-leg {
       width: 12px;
-      height: 32px;
+      height: 34px;
       border-radius: 6px 6px 2px 2px;
-      background: #f97373;
+      background: #e5e7eb;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       font-size: 11px;
       color: #0f172a;
       padding-bottom: 2px;
+      position: relative;
     }
-
     .anticodon-label {
       margin-top: 4px;
       font-size: 11px;
       color: #1f2937;
     }
 
-    /* 氨基酸小球 */
-    .aa-bubble {
-      position: absolute;
-      left: 8%;
-      top: 20px;
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fefce8, #facc15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 13px;
-      box-shadow:
-        0 0 25px rgba(250, 204, 21, 0.9),
-        0 0 50px rgba(52, 211, 153, 0.7);
-      color: #111827;
-      text-align: center;
-    }
-    .aa-bubble span {
-      display: block;
-      margin-top: 4px;
-    }
-
-    /* mRNA 链条 */
+    /* mRNA 链条：在整个区域底部，tRNA 腿踩在上面 */
     .mrna-bar-wrap {
-      position: relative;
-      margin-top: 140px;
-      padding: 10px 12px 4px;
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      padding: 8px 12px 6px;
       border-radius: 14px;
       background: rgba(15, 23, 42, 0.9);
       border: 1px solid rgba(148, 163, 184, 0.6);
@@ -422,14 +429,35 @@
       opacity: 0.6;
     }
 
+    /* 碱基配对的小虚线（氢键） */
+    .pair-dots {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 8px;
+      background-image: radial-gradient(circle, rgba(148,163,184,0.9) 1px, transparent 1px);
+      background-size: 2px 4px;
+      background-repeat: repeat-y;
+    }
+
     /* 弹跳动画 */
     @keyframes pop {
-      0%   { transform: translateY(10px) scale(0.9); opacity: 0.6; }
-      60%  { transform: translateY(0) scale(1.03); opacity: 1;   }
-      100% { transform: translateY(0) scale(1); opacity: 1; }
+      0%   { transform: translate(-50%, 10px) scale(0.9); opacity: 0.7; }
+      60%  { transform: translate(-50%, 0) scale(1.03); opacity: 1;   }
+      100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
     }
-    .pop {
+    .pop-aa {
       animation: pop 0.45s ease-out;
+    }
+    @keyframes bob {
+      0%   { transform: translateY(4px) scale(0.98); }
+      50%  { transform: translateY(0) scale(1.02); }
+      100% { transform: translateY(0) scale(1); }
+    }
+    .pop-trna {
+      animation: bob 0.45s ease-out;
     }
   </style>
 </head>
@@ -505,18 +533,17 @@
       <div class="panel-inner">
         <h2>③ 动画：mRNA 密码子 · tRNA 配对 · 氨基酸</h2>
         <div class="hint">
-          选择 / 查询不同密码子时，mRNA 链上的碱基颜色发生变化，同时出现对应的 tRNA 反密码子和携带的氨基酸小球。
+          选择 / 查询不同密码子时，mRNA 链上的碱基颜色发生变化，同时出现对应的 tRNA 反密码子与之正好配对，氨基酸球被“举”在转运 RNA 上端。
         </div>
 
         <div class="cartoon-wrap">
-          <!-- 氨基酸小球 -->
-          <div class="aa-bubble" id="aa-bubble">
-            氨基酸
-            <span id="aa-text">—</span>
-          </div>
-
-          <!-- 转运 RNA 小人 -->
+          <!-- tRNA 泡泡 + 顶部氨基酸球 -->
           <div class="trna-bubble" id="trna-bubble">
+            <div class="aa-bubble" id="aa-bubble">
+              氨基酸
+              <span id="aa-text">—</span>
+            </div>
+
             <div class="trna-face-eyes">
               <div class="trna-eye"></div>
               <div class="trna-eye"></div>
@@ -540,14 +567,23 @@
             </div>
           </div>
 
-          <!-- mRNA 链条 -->
+          <!-- mRNA 链条：腿踩在这上面 -->
           <div class="mrna-bar-wrap">
             <div class="mrna-label">mRNA 5′ → 3′</div>
             <div class="mrna-bar">
               <div class="mrna-dots"></div>
-              <div class="mrna-base active" id="mrna-base-0"><span id="mrna-letter-0">_</span></div>
-              <div class="mrna-base active" id="mrna-base-1"><span id="mrna-letter-1">_</span></div>
-              <div class="mrna-base active" id="mrna-base-2"><span id="mrna-letter-2">_</span></div>
+              <div class="mrna-base active" id="mrna-base-0">
+                <span id="mrna-letter-0">_</span>
+                <div class="pair-dots" id="pair-0"></div>
+              </div>
+              <div class="mrna-base active" id="mrna-base-1">
+                <span id="mrna-letter-1">_</span>
+                <div class="pair-dots" id="pair-1"></div>
+              </div>
+              <div class="mrna-base active" id="mrna-base-2">
+                <span id="mrna-letter-2">_</span>
+                <div class="pair-dots" id="pair-2"></div>
+              </div>
               <div class="mrna-dots"></div>
             </div>
           </div>
@@ -627,13 +663,13 @@
 
     // 碱基颜色
     const BASE_COLORS = {
-      A: "#f97373", // 红
-      U: "#60a5fa", // 蓝
-      G: "#34d399", // 绿
-      C: "#facc15"  // 黄
+      A: "#f97373",
+      U: "#60a5fa",
+      G: "#34d399",
+      C: "#facc15"
     };
 
-    // 氨基酸颜色（大致按类别）
+    // 氨基酸颜色
     const AA_COLORS = {
       Phe: "#f97316",
       Leu: "#22c55e",
@@ -738,11 +774,11 @@
     }
 
     function triggerPop() {
-      [trnaBubble, aaBubble].forEach(el => {
-        el.classList.remove("pop");
-        void el.offsetWidth; // 重新触发动画
-        el.classList.add("pop");
-      });
+      aaBubble.classList.remove("pop-aa");
+      trnaBubble.classList.remove("pop-trna");
+      void aaBubble.offsetWidth;
+      aaBubble.classList.add("pop-aa");
+      trnaBubble.classList.add("pop-trna");
     }
 
     function updateCartoon(codon, info, anticodon) {
