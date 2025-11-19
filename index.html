@@ -10,7 +10,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
       background: radial-gradient(circle at top, #182b4d 0, #050814 45%, #02030a 100%);
       color: #e5f0ff;
     }
@@ -25,26 +25,9 @@
       margin-bottom: 20px;
     }
     header h1 {
-      font-size: 28px;
-      margin: 0 0 8px;
+      font-size: 30px;
+      margin: 0;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    header .subtitle {
-      font-size: 14px;
-      color: #9fb6ff;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(120, 180, 255, 0.4);
-      background: radial-gradient(circle at left, rgba(120, 180, 255, 0.25), transparent);
-      font-size: 12px;
-      color: #bcd4ff;
-      margin-top: 6px;
     }
 
     .layout {
@@ -235,6 +218,133 @@
       border: 1px solid rgba(148, 163, 184, 0.6);
       font-size: 90%;
     }
+
+    /* 翻译示意图面板 */
+    .translation-panel {
+      margin-top: 20px;
+    }
+    .translation-diagram {
+      margin-top: 10px;
+      padding: 14px 16px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(96, 165, 250, 0.6);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.55), rgba(15, 23, 42, 0.95));
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+      font-size: 13px;
+    }
+    .translation-diagram .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .ribosome {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .subunit {
+      width: 120px;
+      height: 38px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(191, 219, 254, 0.7);
+      background: radial-gradient(circle at top, rgba(191, 219, 254, 0.7), rgba(15, 23, 42, 0.9));
+      font-size: 13px;
+    }
+    .subunit.small {
+      width: 90px;
+      height: 30px;
+      opacity: 0.9;
+    }
+
+    .rna-track {
+      flex: 1;
+      min-width: 260px;
+    }
+    .rna-label {
+      font-size: 12px;
+      color: #bfdbfe;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+    .rna-bases {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rna-codon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      min-width: 46px;
+      min-height: 32px;
+      font-size: 14px;
+    }
+    .rna-codon.other {
+      opacity: 0.6;
+    }
+    .rna-codon.active {
+      border-color: rgba(45, 212, 191, 0.9);
+      box-shadow: 0 0 10px rgba(45, 212, 191, 0.7);
+      background: radial-gradient(circle at top, rgba(34, 197, 235, 0.6), rgba(15, 23, 42, 0.95));
+      letter-spacing: 3px;
+    }
+    .rna-codon.active span {
+      display: inline-block;
+      width: 12px;
+      text-align: center;
+    }
+
+    .trna-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .trna-shape {
+      min-width: 130px;
+      padding: 8px 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(251, 191, 36, 0.8);
+      background: radial-gradient(circle at top, rgba(250, 204, 21, 0.5), rgba(15, 23, 42, 0.96));
+      text-align: center;
+      font-size: 12px;
+    }
+    .trna-shape .small {
+      font-size: 11px;
+      color: #fef3c7;
+    }
+    .trna-shape .code {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+    .aa-bubble {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(52, 211, 153, 0.8);
+      background: rgba(22, 101, 52, 0.85);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    #diagram-aa-name {
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
     @media (max-width: 720px) {
       .result-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -245,11 +355,7 @@
 <body>
   <div class="page-wrap">
     <header>
-      <h1>GENETIC CODE LAB</h1>
-      <div class="subtitle">遗传密码子交互实验台 · mRNA / tRNA / DNA 三层联动 · 面向生物专业学生</div>
-      <div class="chip">
-        <span>模式：</span><span>拼装实验 &amp; 密码子检索</span>
-      </div>
+      <h1>遗传密码子交互实验台</h1>
     </header>
 
     <div class="layout">
@@ -295,7 +401,7 @@
             <button id="search-btn">查询 CODON</button>
           </div>
           <div class="search-hint">
-            · 支持 RNA：A / U / G / C  
+            · 支持 RNA：A / U / G / C<br/>
             · 支持 DNA：如果输入中含有 T，将自动按 U 处理（如 <code>ATG</code> → <code>AUG</code>）。
           </div>
 
@@ -312,11 +418,54 @@
         注：第三位碱基常出现“摇摆配对”（wobble），因此多种密码子可以编码同一氨基酸，这构成了遗传密码的简并性。
       </div>
     </section>
+
+    <!-- 翻译过程示意图，与当前密码子联动 -->
+    <section class="panel translation-panel">
+      <div class="panel-inner">
+        <h2>③ 翻译过程示意图</h2>
+        <div class="hint">
+          当前选择 / 查询的密码子将显示在 mRNA 链上，并联动 tRNA 反密码子及对应氨基酸，模拟核糖体翻译终止复合体的结构示意。
+        </div>
+
+        <div class="translation-diagram">
+          <div class="row">
+            <div class="ribosome">
+              <div class="subunit large">大亚基</div>
+              <div class="subunit small">小亚基</div>
+            </div>
+
+            <div class="rna-track">
+              <div class="rna-label">mRNA 5′ → 3′</div>
+              <div class="rna-bases">
+                <div class="rna-codon other">…</div>
+                <div class="rna-codon active">
+                  <span id="rna-pos-0">_</span>
+                  <span id="rna-pos-1">_</span>
+                  <span id="rna-pos-2">_</span>
+                </div>
+                <div class="rna-codon other">…</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trna-area">
+            <div class="trna-shape">
+              tRNA<br />
+              <span class="small">反密码子 3′→5′</span><br />
+              <span class="code" id="diagram-anticodon">---</span>
+            </div>
+            <div class="aa-bubble">
+              氨基酸：
+              <span id="diagram-aa-name">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script>
     // === 1. 标准遗传密码表（RNA 形式） ===
-    // aa: 三字母缩写；name: 中文名称；note: 备注
     const CODON_TABLE = {
       // Phe 苯丙氨酸
       "UUU": { aa: "Phe", name: "苯丙氨酸" },
@@ -425,14 +574,12 @@
       "GGG": { aa: "Gly", name: "甘氨酸" }
     };
 
-    // === 2. 工具函数 ===
     function normalizeCodon(raw) {
       if (!raw) return { ok: false, error: "请输入 3 个碱基。" };
       let s = raw.trim().toUpperCase();
       if (s.length !== 3) {
         return { ok: false, error: "密码子长度必须为 3。" };
       }
-      // DNA 中的 T 视为 U
       s = s.replace(/T/g, "U");
       if (!/^[AUCG]{3}$/.test(s)) {
         return { ok: false, error: "只允许 A / U / C / G（或含 T 的 DNA 密码子）。" };
@@ -462,7 +609,6 @@
         .sort();
     }
 
-    // === 3. DOM 引用 ===
     const slots = [
       document.getElementById("slot-0"),
       document.getElementById("slot-1"),
@@ -477,15 +623,32 @@
     const btnBackspace = document.getElementById("btn-backspace");
     const btnClear = document.getElementById("btn-clear");
 
+    // diagram DOM
+    const rnaPos0 = document.getElementById("rna-pos-0");
+    const rnaPos1 = document.getElementById("rna-pos-1");
+    const rnaPos2 = document.getElementById("rna-pos-2");
+    const diagramAnticodon = document.getElementById("diagram-anticodon");
+    const diagramAaName = document.getElementById("diagram-aa-name");
+
     let currentCodon = [];
 
     function updateSlots() {
       for (let i = 0; i < 3; i++) {
         slots[i].textContent = currentCodon[i] || "_";
       }
+      if (currentCodon.length === 3) {
+        rnaPos0.textContent = currentCodon[0];
+        rnaPos1.textContent = currentCodon[1];
+        rnaPos2.textContent = currentCodon[2];
+      } else {
+        rnaPos0.textContent = "_";
+        rnaPos1.textContent = "_";
+        rnaPos2.textContent = "_";
+        diagramAnticodon.textContent = "---";
+        diagramAaName.textContent = "—";
+      }
     }
 
-    // === 4. 展示结果 ===
     function showCodonInfo(codon, source) {
       const info = CODON_TABLE[codon];
       if (!info) {
@@ -510,26 +673,35 @@
       const noteText = info.note ? `<div><span class="label">备注：</span>${info.note}</div>` : "";
 
       resultSource.textContent = source === "builder"
-        ? "Result · From Codon Assembly"
-        : "Result · From Codon Query";
+        ? "RESULT · FROM CODON ASSEMBLY"
+        : "RESULT · FROM CODON QUERY";
 
       resultGrid.innerHTML = `
         <div>
-          <div><span class="label">mRNA 密码子 (5'→3')：</span><code>${codon}</code></div>
+          <div><span class="label">mRNA 密码子 (5′→3′)：</span><code>${codon}</code></div>
           <div><span class="label">氨基酸：</span>${info.name} (${aaCode})</div>
           ${noteText}
           <div style="margin-top:6px;"><span class="label">简并性：</span>${degeneracyText}</div>
         </div>
         <div>
           <div><span class="label">同义密码子：</span>${synonymous.join(", ")}</div>
-          <div style="margin-top:6px;"><span class="label">tRNA 反密码子 (3'→5')：</span><code>${anticodon}</code></div>
-          <div style="margin-top:4px;"><span class="label">DNA 模板链 (3'→5')：</span><code>${dnaTemplate}</code></div>
+          <div style="margin-top:6px;"><span class="label">tRNA 反密码子 (3′→5′)：</span><code>${anticodon}</code></div>
+          <div style="margin-top:4px;"><span class="label">DNA 模板链 (3′→5′)：</span><code>${dnaTemplate}</code></div>
         </div>
       `;
       resultCard.style.display = "block";
+
+      // 更新翻译示意图
+      rnaPos0.textContent = codon[0];
+      rnaPos1.textContent = codon[1];
+      rnaPos2.textContent = codon[2];
+      diagramAnticodon.textContent = anticodon;
+      diagramAaName.textContent = aaCode === "Stop"
+        ? "终止信号"
+        : `${info.name} (${aaCode})`;
     }
 
-    // === 5. 拼装互动事件 ===
+    // 拼装互动事件
     document.querySelectorAll(".base-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         if (currentCodon.length >= 3) return;
@@ -554,9 +726,10 @@
       currentCodon = [];
       updateSlots();
       errorMsg.textContent = "";
+      resultCard.style.display = "none";
     });
 
-    // === 6. 搜索工具事件 ===
+    // 搜索工具事件
     function handleSearch() {
       const norm = normalizeCodon(codonInput.value);
       if (!norm.ok) {
@@ -576,7 +749,7 @@
       }
     });
 
-    // 初始化拼装槽
+    // 初始化
     updateSlots();
   </script>
 </body>
