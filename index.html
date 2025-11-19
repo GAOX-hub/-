@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -8,110 +9,93 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
-      background: radial-gradient(circle at top, #182b4d 0, #050814 45%, #02030a 100%);
-      color: #e5f0ff;
+      background: #f5f7fb;
+      color: #111827;
     }
     .page-wrap {
       max-width: 1100px;
-      margin: 32px auto;
-      padding: 0 20px 40px;
-    }
-    header {
-      border-bottom: 1px solid rgba(120, 180, 255, 0.2);
-      padding-bottom: 16px;
-      margin-bottom: 20px;
+      margin: 24px auto 40px;
+      padding: 0 20px;
     }
     header h1 {
-      font-size: 30px;
-      margin: 0;
-      letter-spacing: 0.08em;
+      margin: 0 0 16px;
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+    }
+    header p {
+      margin: 0 0 24px;
+      font-size: 14px;
+      color: #4b5563;
+      text-align: center;
     }
 
     .layout {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
+      margin-bottom: 20px;
     }
-    .panel {
+    .card {
       flex: 1 1 320px;
-      padding: 16px 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(120, 180, 255, 0.35);
-      background: linear-gradient(145deg, rgba(12, 22, 48, 0.95), rgba(7, 15, 32, 0.98));
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
-      position: relative;
-      overflow: hidden;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      padding: 14px 16px 16px;
     }
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.08), transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.09), transparent 55%);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-    .panel-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .panel h2 {
+    .card h2 {
+      margin: 0 0 8px;
       font-size: 18px;
-      margin: 0 0 6px;
     }
-    .panel .hint {
+    .hint {
       font-size: 13px;
-      color: #9fb6ff;
+      color: #6b7280;
       margin-bottom: 10px;
+      line-height: 1.5;
     }
 
-    /* 拼装区域 */
+    /* 拼装区 */
     .bases {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .base-btn {
-      min-width: 44px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(96, 165, 250, 0.7);
-      background: radial-gradient(circle at top, rgba(59, 130, 246, 0.4), rgba(15, 23, 42, 0.9));
-      color: #e5f0ff;
-      font-size: 18px;
+      min-width: 40px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      background: #f9fafb;
+      font-size: 16px;
       cursor: pointer;
-      transition: transform 0.07s ease, box-shadow 0.07s ease, background 0.15s ease;
+      transition: background 0.1s ease, transform 0.1s ease;
     }
     .base-btn:hover {
+      background: #e5f3ff;
       transform: translateY(-1px);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
-    }
-    .base-btn:active {
-      transform: translateY(0);
-      box-shadow: 0 0 4px rgba(56, 189, 248, 0.5);
     }
     .codon-display {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 8px;
     }
     .codon-slot {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 22px;
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.6));
+      background: #f9fafb;
     }
     .codon-label {
       font-size: 13px;
-      color: #9fb6ff;
+      color: #6b7280;
     }
     .builder-actions {
       display: flex;
@@ -120,292 +104,330 @@
       margin-top: 4px;
     }
     .small-btn {
-      padding: 5px 10px;
+      padding: 4px 10px;
       font-size: 12px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.8);
-      color: #cbd5f5;
+      border: 1px solid #cbd5e1;
+      background: #f9fafb;
       cursor: pointer;
     }
     .small-btn:hover {
-      background: rgba(30, 64, 175, 0.8);
+      background: #e5f0ff;
     }
 
-    /* 搜索区域 */
+    /* 搜索区 */
     .search-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     #codon-input {
-      padding: 7px 10px;
+      padding: 6px 10px;
       font-size: 18px;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.9);
-      background: rgba(15, 23, 42, 0.98);
-      color: #e5f0ff;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
       width: 120px;
       text-transform: uppercase;
     }
     #codon-input::placeholder {
-      color: #64748b;
+      color: #9ca3af;
     }
     #search-btn {
-      padding: 7px 14px;
+      padding: 6px 14px;
       font-size: 14px;
       border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.8);
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.4), rgba(15, 23, 42, 0.9));
-      color: #e5f0ff;
+      border: 1px solid #3b82f6;
+      background: #eff6ff;
+      color: #1d4ed8;
       cursor: pointer;
-      transition: box-shadow 0.1s ease, transform 0.1s ease;
     }
     #search-btn:hover {
-      box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
-      transform: translateY(-1px);
+      background: #dbeafe;
     }
     .search-hint {
       font-size: 12px;
-      color: #9fb6ff;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+    .error {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #b91c1c;
     }
 
     /* 结果卡片 */
     .result-card {
-      margin-top: 20px;
-      padding: 18px 18px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(94, 234, 212, 0.6);
-      background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.22), rgba(15, 23, 42, 0.96));
-      box-shadow: 0 0 24px rgba(45, 212, 191, 0.35);
+      margin-bottom: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      padding: 14px 16px 12px;
     }
     .result-header {
       font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #6b7280;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #a5f3fc;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .result-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      gap: 10px 24px;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap: 8px 20px;
       font-size: 14px;
     }
     .label {
       font-weight: 600;
-      margin-right: 6px;
-      color: #e0f2fe;
+      margin-right: 4px;
+      color: #111827;
     }
     .muted {
-      font-size: 12px;
-      color: #93c5fd;
-      margin-top: 8px;
-    }
-    .error {
       margin-top: 6px;
-      font-size: 13px;
-      color: #fecaca;
+      font-size: 12px;
+      color: #6b7280;
     }
     code {
-      background: rgba(15, 23, 42, 0.9);
-      padding: 2px 5px;
+      background: #f9fafb;
       border-radius: 4px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid #e5e7eb;
+      padding: 1px 4px;
       font-size: 90%;
     }
 
     @media (max-width: 720px) {
-      .result-grid { grid-template-columns: minmax(0, 1fr); }
+      .result-grid { grid-template-columns: minmax(0,1fr); }
     }
 
-    /* ==== 动画版 tRNA + mRNA ==== */
-    .animation-panel { margin-top: 20px; }
-    .cartoon-wrap {
-      margin-top: 10px;
-      padding: 18px 18px 60px;
-      border-radius: 18px;
-      border: 1px solid rgba(96, 165, 250, 0.7);
-      background: radial-gradient(circle at top, rgba(30, 64, 175, 0.7), rgba(15, 23, 42, 0.96));
-      box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+    /* ========= 中心教学图：tRNA + mRNA ========= */
+    .diagram-card {
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      padding: 14px 16px 18px;
+    }
+    .diagram-title {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .diagram-hint {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .diagram-wrap {
+      margin-top: 4px;
+      display: flex;
+      justify-content: center;
+    }
+    .diagram-inner {
+      width: 340px;
       position: relative;
-      overflow: visible;
-      min-height: 260px;
+      padding-top: 12px;
     }
 
-    /* 转运RNA整体泡泡 */
-    .trna-bubble {
-      position: absolute;
-      right: 8%;
-      top: 60px;
+    /* tRNA 三叶草 */
+    .trna-body {
       width: 220px;
-      height: 160px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 20% 20%, rgba(248, 250, 252, 0.96), rgba(191, 219, 254, 0.96));
-      box-shadow:
-        0 0 25px rgba(191, 219, 254, 0.8),
-        0 0 60px rgba(59, 130, 246, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      flex-direction: column;
-      padding-top: 46px;
-      color: #0f172a;
-      font-size: 13px;
-      transform-origin: center bottom;
-      overflow: visible;
+      height: 220px;
+      margin: 0 auto;
+      position: relative;
     }
-
-    /* 氨基酸球：在 tRNA 泡泡上方 */
-    .aa-bubble {
+    .trna-backbone {
       position: absolute;
-      top: -70px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 120px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #fefce8, #22c55e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 13px;
-      box-shadow:
-        0 0 25px rgba(34, 197, 94, 0.9),
-        0 0 50px rgba(52, 211, 153, 0.7);
-      color: #111827;
-      text-align: center;
-      pointer-events: none;
+      inset: 0;
+      margin: auto;
     }
-    .aa-bubble span {
-      display: block;
-      margin-top: 4px;
+    .trna-main-circle {
+      position: absolute;
+      top: 80px;
+      left: 76px;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 6px solid #38bdf8;
+    }
+    .trna-loop-left,
+    .trna-loop-right {
+      position: absolute;
+      top: 94px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 6px solid #38bdf8;
+    }
+    .trna-loop-left { left: 10px; }
+    .trna-loop-right { right: 10px; }
+
+    .trna-loop-bottom {
+      position: absolute;
+      bottom: 2px;
+      left: 96px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 6px solid #38bdf8;
     }
 
-    .trna-face-eyes {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 3px;
-    }
-    .trna-eye {
-      width: 8px;
-      height: 18px;
-      border-radius: 999px;
-      background: #0f172a;
-    }
-    .trna-mouth {
-      width: 26px;
-      height: 14px;
-      border-radius: 0 0 26px 26px;
-      background: #fb7185;
-      margin-bottom: 6px;
-    }
-    .trna-text {
-      font-weight: 600;
-      margin-bottom: 4px;
+    .trna-small-loop {
+      position: absolute;
+      top: 132px;
+      left: 146px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 6px solid #38bdf8;
     }
 
-    .trna-clover {
+    .trna-stem-vertical {
+      position: absolute;
+      top: 10px;
+      left: 134px;
+      width: 6px;
+      height: 80px;
+      background: #38bdf8;
+      border-radius: 999px;
+    }
+    .trna-stem-bottom {
+      position: absolute;
+      top: 138px;
+      left: 147px;
+      width: 6px;
+      height: 42px;
+      background: #38bdf8;
+      border-radius: 999px;
+    }
+
+    /* 红点（核苷酸） */
+    .dots-vertical {
+      position: absolute;
+      top: 16px;
+      left: 136px;
+      width: 2px;
+      height: 70px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 4px;
     }
-    .clover-stick {
+    .dots-horizontal {
+      position: absolute;
+      top: 110px;
+      left: 90px;
+      width: 82px;
+      height: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dots-bottom {
+      position: absolute;
+      top: 150px;
+      left: 152px;
+      width: 2px;
+      height: 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .dot {
       width: 4px;
-      height: 50px;
-      border-radius: 999px;
-      background: #0ea5e9;
-      position: relative;
-    }
-    .clover-loop-top {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 26px;
-      height: 26px;
-      border-radius: 999px;
-      border: 4px solid #0ea5e9;
-      background: rgba(191, 219, 254, 0.6);
-    }
-    .clover-loop-left,
-    .clover-loop-right {
-      position: absolute;
-      top: 8px;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      border: 4px solid #0ea5e9;
-      background: rgba(191, 219, 254, 0.6);
-    }
-    .clover-loop-left { right: 110%; }
-    .clover-loop-right { left: 110%; }
-    .clover-loop-bottom {
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      border: 4px solid #0ea5e9;
-      background: rgba(191, 219, 254, 0.6);
+      height: 4px;
+      border-radius: 50%;
+      background: #ef4444;
     }
 
-    .anticodon-legs {
-      display: flex;
-      gap: 4px;
-      margin-top: 46px;
+    /* 顶端 A-OH 3' */
+    .trna-top-label {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      text-align: center;
+      color: #111827;
+      line-height: 1.2;
     }
-    .anticodon-leg {
-      width: 12px;
-      height: 34px;
-      border-radius: 6px 6px 2px 2px;
-      background: #e5e7eb;
+    .trna-top-label .small {
+      font-size: 10px;
+    }
+
+    /* 底部反密码子环内文字 */
+    .anticodon-ring {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      width: 60px;
+    }
+    .anticodon-text {
+      display: block;
+    }
+    .anticodon-note {
+      margin-top: 2px;
+      font-size: 10px;
+      color: #4b5563;
+    }
+
+    /* 氨基酸：顶端小球 */
+    .aa-circle {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #bbf7d0;
+      border: 2px solid #16a34a;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
       font-size: 11px;
-      color: #0f172a;
-      padding-bottom: 2px;
-      position: relative;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
     }
-    .anticodon-label {
-      margin-top: 4px;
-      font-size: 11px;
-      color: #1f2937;
+    .aa-circle span {
+      display: block;
+      margin-top: 2px;
     }
 
-    /* mRNA 链条：在整个区域底部，tRNA 腿踩在上面 */
-    .mrna-bar-wrap {
+    /* mRNA 链 + 密码子 */
+    .mrna-zone {
+      margin-top: 10px;
+      padding-top: 4px;
+    }
+    .mrna-line {
+      width: 100%;
+      height: 4px;
+      background: #f97316;
+      border-radius: 999px;
+      position: relative;
+      margin: 0 auto 20px;
+    }
+    .mrna-codon {
       position: absolute;
       left: 50%;
-      bottom: 14px;
       transform: translateX(-50%);
-      width: calc(100% - 40px);
-      padding: 8px 12px 6px;
-      border-radius: 14px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-    .mrna-label {
-      font-size: 12px;
-      color: #bfdbfe;
-      margin-bottom: 4px;
-    }
-    .mrna-bar {
+      bottom: 4px;
       display: flex;
-      align-items: flex-end;
       gap: 4px;
+      align-items: flex-end;
     }
     .mrna-base {
-      width: 12px;
-      height: 28px;
+      width: 16px;
+      height: 32px;
       border-radius: 4px 4px 0 0;
-      background: rgba(51, 65, 85, 0.8);
+      background: #e5e7eb;
       position: relative;
     }
     .mrna-base span {
@@ -414,50 +436,42 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 11px;
-      color: #bfdbfe;
-    }
-    .mrna-base.active {
-      width: 16px;
-      height: 36px;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
-    }
-    .mrna-dots {
-      flex: 1;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.6);
-      opacity: 0.6;
+      color: #111827;
     }
 
-    /* 碱基配对的小虚线（氢键） */
-    .pair-dots {
+    /* 连接反密码子和密码子的小竖线 */
+    .pair-line {
       position: absolute;
-      bottom: -8px;
-      left: 50%;
-      transform: translateX(-50%);
       width: 2px;
-      height: 8px;
-      background-image: radial-gradient(circle, rgba(148,163,184,0.9) 1px, transparent 1px);
-      background-size: 2px 4px;
-      background-repeat: repeat-y;
+      height: 16px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #9ca3af 0,
+        #9ca3af 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      bottom: 36px;
+    }
+    #pair-0 { left: calc(50% - 14px); }
+    #pair-1 { left: 50%; }
+    #pair-2 { left: calc(50% + 14px); }
+
+    .mrna-label-text {
+      text-align: center;
+      font-size: 13px;
+      color: #374151;
+      margin-top: -10px;
     }
 
-    /* 弹跳动画 */
-    @keyframes pop {
-      0%   { transform: translate(-50%, 10px) scale(0.9); opacity: 0.7; }
-      60%  { transform: translate(-50%, 0) scale(1.03); opacity: 1;   }
-      100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+    /* 动画轻微缩放 */
+    .aa-pop {
+      animation: aa-pop 0.35s ease-out;
     }
-    .pop-aa {
-      animation: pop 0.45s ease-out;
-    }
-    @keyframes bob {
-      0%   { transform: translateY(4px) scale(0.98); }
-      50%  { transform: translateY(0) scale(1.02); }
-      100% { transform: translateY(0) scale(1); }
-    }
-    .pop-trna {
-      animation: bob 0.45s ease-out;
+    @keyframes aa-pop {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0.6; }
+      70% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -465,61 +479,58 @@
   <div class="page-wrap">
     <header>
       <h1>遗传密码子交互实验台</h1>
+      <p>mRNA 密码子 ⇄ tRNA 反密码子 ⇨ 氨基酸</p>
     </header>
 
     <div class="layout">
       <!-- 左：拼装 -->
-      <section class="panel">
-        <div class="panel-inner">
-          <h2>① 密码子拼装实验</h2>
-          <div class="hint">
-            点击碱基卡片组合三联体密码子（RNA）。拼装完成后将自动解析对应氨基酸及配对关系。
-          </div>
+      <section class="card">
+        <h2>① 密码子拼装实验</h2>
+        <div class="hint">
+          点击碱基卡片组合三联体密码子（RNA）。拼装完成后将自动解析对应氨基酸及配对关系。
+        </div>
 
-          <div class="bases">
-            <button class="base-btn" data-base="A">A</button>
-            <button class="base-btn" data-base="U">U</button>
-            <button class="base-btn" data-base="G">G</button>
-            <button class="base-btn" data-base="C">C</button>
-          </div>
+        <div class="bases">
+          <button class="base-btn" data-base="A">A</button>
+          <button class="base-btn" data-base="U">U</button>
+          <button class="base-btn" data-base="G">G</button>
+          <button class="base-btn" data-base="C">C</button>
+        </div>
 
-          <div class="codon-display">
-            <div class="codon-slot" id="slot-0">_</div>
-            <div class="codon-slot" id="slot-1">_</div>
-            <div class="codon-slot" id="slot-2">_</div>
-            <div class="codon-label">mRNA 5' → 3'</div>
-          </div>
+        <div class="codon-display">
+          <div class="codon-slot" id="slot-0">_</div>
+          <div class="codon-slot" id="slot-1">_</div>
+          <div class="codon-slot" id="slot-2">_</div>
+          <div class="codon-label">mRNA 5′ → 3′</div>
+        </div>
 
-          <div class="builder-actions">
-            <button class="small-btn" id="btn-backspace">删掉最后一位</button>
-            <button class="small-btn" id="btn-clear">清空密码子</button>
-          </div>
+        <div class="builder-actions">
+          <button class="small-btn" id="btn-backspace">删掉最后一位</button>
+          <button class="small-btn" id="btn-clear">清空密码子</button>
         </div>
       </section>
 
       <!-- 右：检索 -->
-      <section class="panel">
-        <div class="panel-inner">
-          <h2>② 密码子检索工具</h2>
-          <div class="hint">
-            输入任意三联体密码子进行查询，可用于验证作业或快速查看简并性。
-          </div>
-
-          <div class="search-row">
-            <input id="codon-input" type="text" maxlength="3" placeholder="例如 AUG" />
-            <button id="search-btn">查询 CODON</button>
-          </div>
-          <div class="search-hint">
-            · 支持 RNA：A / U / G / C<br/>
-            · 支持 DNA：如果输入中含有 T，将自动按 U 处理（如 <code>ATG</code> → <code>AUG</code>）。
-          </div>
-
-          <div id="error-msg" class="error"></div>
+      <section class="card">
+        <h2>② 密码子检索工具</h2>
+        <div class="hint">
+          输入任意三联体密码子进行查询，可用于验证作业或快速查看简并性。
         </div>
+
+        <div class="search-row">
+          <input id="codon-input" type="text" maxlength="3" placeholder="例如 AUG" />
+          <button id="search-btn">查询 CODON</button>
+        </div>
+        <div class="search-hint">
+          · 支持 RNA：A / U / G / C<br/>
+          · 支持 DNA：如果输入中含有 T，将自动按 U 处理（如 <code>ATG</code> → <code>AUG</code>）。
+        </div>
+
+        <div id="error-msg" class="error"></div>
       </section>
     </div>
 
-    <!-- 信息结果 -->
+    <!-- 结果 -->
     <section id="result-card" class="result-card" style="display:none;">
       <div class="result-header" id="result-source">RESULT</div>
       <div class="result-grid" id="result-grid"></div>
@@ -528,64 +539,73 @@
       </div>
     </section>
 
-    <!-- 动画版 tRNA + mRNA -->
-    <section class="panel animation-panel">
-      <div class="panel-inner">
-        <h2>③ 动画：mRNA 密码子 · tRNA 配对 · 氨基酸</h2>
-        <div class="hint">
-          选择 / 查询不同密码子时，mRNA 链上的碱基颜色发生变化，同时出现对应的 tRNA 反密码子与之正好配对，氨基酸球被“举”在转运 RNA 上端。
-        </div>
+    <!-- 中央教学图 -->
+    <section class="diagram-card">
+      <h2 class="diagram-title">③ 翻译过程示意：tRNA 与 mRNA 的配对</h2>
+      <div class="diagram-hint">
+        当前选择 / 查询的密码子将在 mRNA 链上显示，并同时更新 tRNA 底部的反密码子以及顶端结合的氨基酸。
+      </div>
 
-        <div class="cartoon-wrap">
-          <!-- tRNA 泡泡 + 顶部氨基酸球 -->
-          <div class="trna-bubble" id="trna-bubble">
-            <div class="aa-bubble" id="aa-bubble">
-              氨基酸
-              <span id="aa-text">—</span>
-            </div>
+      <div class="diagram-wrap">
+        <div class="diagram-inner">
+          <!-- tRNA 主体 -->
+          <div class="trna-body">
+            <div class="trna-backbone">
+              <div class="trna-main-circle"></div>
+              <div class="trna-loop-left"></div>
+              <div class="trna-loop-right"></div>
+              <div class="trna-loop-bottom"></div>
+              <div class="trna-small-loop"></div>
+              <div class="trna-stem-vertical"></div>
+              <div class="trna-stem-bottom"></div>
 
-            <div class="trna-face-eyes">
-              <div class="trna-eye"></div>
-              <div class="trna-eye"></div>
-            </div>
-            <div class="trna-mouth"></div>
-            <div class="trna-text">转运 RNA</div>
-
-            <div class="trna-clover">
-              <div class="clover-stick">
-                <div class="clover-loop-top"></div>
-                <div class="clover-loop-left"></div>
-                <div class="clover-loop-right"></div>
-                <div class="clover-loop-bottom"></div>
+              <!-- 红点 -->
+              <div class="dots-vertical">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
               </div>
-              <div class="anticodon-legs" id="anticodon-legs">
-                <div class="anticodon-leg" id="leg-0">_</div>
-                <div class="anticodon-leg" id="leg-1">_</div>
-                <div class="anticodon-leg" id="leg-2">_</div>
+              <div class="dots-horizontal">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
               </div>
-              <div class="anticodon-label">反密码子 3′→5′</div>
+              <div class="dots-bottom">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              </div>
+
+              <!-- 顶端 A-OH 3' -->
+              <div class="trna-top-label">
+                A–OH&nbsp; 3′<br/>
+                <span class="small">C<br/>C</span>
+              </div>
+
+              <!-- 氨基酸小球 -->
+              <div class="aa-circle" id="aa-circle">
+                氨基酸
+                <span id="aa-text">—</span>
+              </div>
+
+              <!-- 底部反密码子环文字 -->
+              <div class="anticodon-ring">
+                <span class="anticodon-text" id="anticodon-text">_ _ _</span>
+                <span class="anticodon-note">反密码子 3′→5′</span>
+              </div>
             </div>
           </div>
 
-          <!-- mRNA 链条：腿踩在这上面 -->
-          <div class="mrna-bar-wrap">
-            <div class="mrna-label">mRNA 5′ → 3′</div>
-            <div class="mrna-bar">
-              <div class="mrna-dots"></div>
-              <div class="mrna-base active" id="mrna-base-0">
-                <span id="mrna-letter-0">_</span>
-                <div class="pair-dots" id="pair-0"></div>
+          <!-- mRNA 链 + 密码子 -->
+          <div class="mrna-zone">
+            <div class="mrna-line">
+              <div class="mrna-codon">
+                <div class="mrna-base" id="mrna-base-0"><span id="mrna-letter-0">_</span></div>
+                <div class="mrna-base" id="mrna-base-1"><span id="mrna-letter-1">_</span></div>
+                <div class="mrna-base" id="mrna-base-2"><span id="mrna-letter-2">_</span></div>
               </div>
-              <div class="mrna-base active" id="mrna-base-1">
-                <span id="mrna-letter-1">_</span>
-                <div class="pair-dots" id="pair-1"></div>
-              </div>
-              <div class="mrna-base active" id="mrna-base-2">
-                <span id="mrna-letter-2">_</span>
-                <div class="pair-dots" id="pair-2"></div>
-              </div>
-              <div class="mrna-dots"></div>
+              <!-- 三条小竖线，表示碱基配对 -->
+              <div class="pair-line" id="pair-0"></div>
+              <div class="pair-line" id="pair-1"></div>
+              <div class="pair-line" id="pair-2"></div>
             </div>
+            <div class="mrna-label-text">mRNA 5′ → 3′</div>
           </div>
         </div>
       </div>
@@ -661,15 +681,13 @@
       "GGG": { aa: "Gly", name: "甘氨酸" }
     };
 
-    // 碱基颜色
     const BASE_COLORS = {
-      A: "#f97373",
-      U: "#60a5fa",
-      G: "#34d399",
-      C: "#facc15"
+      A: "#fb7185",  // 粉红
+      U: "#60a5fa",  // 蓝
+      G: "#34d399",  // 绿
+      C: "#facc15"   // 黄
     };
 
-    // 氨基酸颜色
     const AA_COLORS = {
       Phe: "#f97316",
       Leu: "#22c55e",
@@ -739,7 +757,6 @@
     const btnBackspace = document.getElementById("btn-backspace");
     const btnClear = document.getElementById("btn-clear");
 
-    // 动画 DOM
     const mrnaBases = [
       document.getElementById("mrna-base-0"),
       document.getElementById("mrna-base-1"),
@@ -750,14 +767,9 @@
       document.getElementById("mrna-letter-1"),
       document.getElementById("mrna-letter-2")
     ];
-    const legElems = [
-      document.getElementById("leg-0"),
-      document.getElementById("leg-1"),
-      document.getElementById("leg-2")
-    ];
-    const aaBubble = document.getElementById("aa-bubble");
+    const aaCircle = document.getElementById("aa-circle");
     const aaText = document.getElementById("aa-text");
-    const trnaBubble = document.getElementById("trna-bubble");
+    const anticodonText = document.getElementById("anticodon-text");
 
     let currentCodon = [];
 
@@ -767,32 +779,21 @@
       }
       if (currentCodon.length !== 3) {
         mrnaLetters.forEach(el => el.textContent = "_");
-        mrnaBases.forEach(el => el.style.backgroundColor = "rgba(51,65,85,0.8)");
-        legElems.forEach(el => el.textContent = "_");
+        mrnaBases.forEach(el => el.style.backgroundColor = "#e5e7eb");
+        anticodonText.textContent = "_ _ _";
         aaText.textContent = "—";
       }
     }
 
-    function triggerPop() {
-      aaBubble.classList.remove("pop-aa");
-      trnaBubble.classList.remove("pop-trna");
-      void aaBubble.offsetWidth;
-      aaBubble.classList.add("pop-aa");
-      trnaBubble.classList.add("pop-trna");
-    }
-
-    function updateCartoon(codon, info, anticodon) {
+    function updateDiagram(codon, info, anticodon) {
       const bases = codon.split("");
       bases.forEach((b, i) => {
         mrnaLetters[i].textContent = b;
-        mrnaBases[i].style.backgroundColor = BASE_COLORS[b] || "#64748b";
+        mrnaBases[i].style.backgroundColor = BASE_COLORS[b] || "#e5e7eb";
       });
 
-      const antiArr = anticodon.split("");
-      antiArr.forEach((b, i) => {
-        legElems[i].textContent = b || "_";
-        legElems[i].style.backgroundColor = BASE_COLORS[b] || "#e5e7eb";
-      });
+      // 反密码子文字（加空格便于阅读）
+      anticodonText.textContent = anticodon.split("").join(" ");
 
       if (info.aa === "Stop") {
         aaText.textContent = "终止信号";
@@ -800,10 +801,13 @@
         aaText.textContent = info.name + " (" + info.aa + ")";
       }
       const color = AA_COLORS[info.aa] || "#22c55e";
-      aaBubble.style.background = `radial-gradient(circle at 30% 20%, #fefce8, ${color})`;
-      aaBubble.style.boxShadow = `0 0 25px ${color}, 0 0 50px rgba(52,211,153,0.7)`;
+      aaCircle.style.background = "#ffffff";
+      aaCircle.style.borderColor = color;
+      aaCircle.style.boxShadow = "0 0 0 2px " + color + "20";
 
-      triggerPop();
+      aaCircle.classList.remove("aa-pop");
+      void aaCircle.offsetWidth;
+      aaCircle.classList.add("aa-pop");
     }
 
     function showCodonInfo(codon, source) {
@@ -838,17 +842,17 @@
           <div><span class="label">mRNA 密码子 (5′→3′)：</span><code>${codon}</code></div>
           <div><span class="label">氨基酸：</span>${info.name} (${aaCode})</div>
           ${noteText}
-          <div style="margin-top:6px;"><span class="label">简并性：</span>${degText}</div>
+          <div style="margin-top:4px;"><span class="label">简并性：</span>${degText}</div>
         </div>
         <div>
           <div><span class="label">同义密码子：</span>${synonymous.join(", ")}</div>
-          <div style="margin-top:6px;"><span class="label">tRNA 反密码子 (3′→5′)：</span><code>${anticodon}</code></div>
+          <div style="margin-top:4px;"><span class="label">tRNA 反密码子 (3′→5′)：</span><code>${anticodon}</code></div>
           <div style="margin-top:4px;"><span class="label">DNA 模板链 (3′→5′)：</span><code>${dnaTemplate}</code></div>
         </div>
       `;
       resultCard.style.display = "block";
 
-      updateCartoon(codon, info, anticodon);
+      updateDiagram(codon, info, anticodon);
     }
 
     // 拼装按钮
